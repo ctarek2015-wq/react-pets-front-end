@@ -1,15 +1,30 @@
-import { useState } from "react";
-import heroImg from "./assets/hero.png";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/vite.svg";
+import { useState, useEffect } from "react";
+import * as petService from "./services/petService";
+import PetList from "./components/PetList/PetList";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [pets, setPets] = useState([]);
+
+  useEffect(() => {
+    const fetchPets = async () => {
+      try {
+        const data = await petService.index();
+        if (data.error) {
+          throw new Error(data.error);
+        }
+        setPets(data);
+        console.log(data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchPets();
+  }, []);
 
   return (
     <>
-      <h1>Welcome to React Pets</h1>
+      <PetList pets={pets} />
     </>
   );
 }
