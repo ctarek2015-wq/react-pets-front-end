@@ -1,4 +1,12 @@
 const PetList = ({ pets }) => {
+  if (!pets.length)
+    return (
+      <>
+        <h1>Pet List</h1>
+        <p>No pets available</p>
+      </>
+    );
+
   return (
     <div>
       <h1>Pet List</h1>
