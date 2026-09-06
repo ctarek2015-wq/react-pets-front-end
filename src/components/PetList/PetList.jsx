@@ -8,14 +8,14 @@ const PetList = ({ pets, handleSelectPet }) => {
     );
 
   return (
-    <div>
+    <div className="sidebar-container">
       <h1>Pet List</h1>
-      <div>
+      <div className="list-container">
         <ul>
           {pets.map((pet) => (
             <li
               key={pet._id}
-              style={{ cursor: "pointer", color: "blue" }}
+              style={{ cursor: "pointer", color: "#646CFF" }}
               onClick={() => handleSelectPet(pet)}
             >
               {pet.name}

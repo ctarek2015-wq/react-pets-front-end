@@ -1,13 +1,13 @@
 const PetDetail = ({ pet }) => {
   if (!pet) {
     return (
-      <div>
+      <div className="details-container">
         <h1>NO DETAILS</h1>
       </div>
     );
   }
   return (
-    <div>
+    <div className="details-container">
       <h1>{pet.name}</h1>
       <h2>Breed: {pet.breed}</h2>
       <h2>
