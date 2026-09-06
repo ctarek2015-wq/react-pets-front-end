@@ -1,10 +1,10 @@
-const PetList = ({ pets }) => {
+const PetList = ({ pets, handleSelectPet }) => {
   if (!pets.length)
     return (
-      <>
+      <div>
         <h1>Pet List</h1>
-        <p>No pets available</p>
-      </>
+        <h2>No pets available</h2>
+      </div>
     );
 
   return (
@@ -13,7 +13,13 @@ const PetList = ({ pets }) => {
       <div>
         <ul>
           {pets.map((pet) => (
-            <li key={pet._id}>{pet.name}</li>
+            <li
+              key={pet._id}
+              style={{ cursor: "pointer", color: "blue" }}
+              onClick={() => handleSelectPet(pet)}
+            >
+              {pet.name}
+            </li>
           ))}
         </ul>
       </div>
