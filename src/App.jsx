@@ -15,7 +15,8 @@ function App() {
     setIsFormOpen(false);
   };
 
-  const handleFormView = () => {
+  const handleFormView = (pet) => {
+    if (!pet._id) setSelectedPet(null);
     setIsFormOpen(!isFormOpen);
   };
 
@@ -28,6 +29,20 @@ function App() {
       setPets([...pets, newPet]);
       setIsFormOpen(false);
     } catch (error) {}
+  };
+
+  const handleUpdatePet = async (formData, petId) => {
+    try {
+      const updatedPet = await petService.update(formData, petId);
+
+      if (updatedPet.error) throw new Error(updatedPet.error);
+
+      setPets(pets.map((pet) => (pet._id === petId ? updatedPet : pet)));
+      setSelectedPet(updatedPet);
+      setIsFormOpen(false);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   useEffect(() => {
@@ -55,9 +70,13 @@ function App() {
         isFormOpen={isFormOpen}
       />
       {isFormOpen ? (
-        <PetForm handleAddPet={handleAddPet} />
+        <PetForm
+          handleAddPet={handleAddPet}
+          selectedPet={selectedPet}
+          handleUpdatePet={handleUpdatePet}
+        />
       ) : (
-        <PetDetail selectedPet={selectedPet} />
+        <PetDetail selectedPet={selectedPet} handleFormView={handleFormView} />
       )}
     </>
   );

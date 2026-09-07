@@ -1,11 +1,14 @@
 import { useState } from "react";
 
-const PetForm = ({ handleAddPet }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    age: "",
-    breed: "",
-  });
+const initialState = {
+  name: "",
+  age: "",
+  breed: "",
+};
+const PetForm = ({ handleAddPet, selectedPet, handleUpdatePet }) => {
+  const [formData, setFormData] = useState(
+    selectedPet ? selectedPet : initialState,
+  );
 
   const handleChange = ({ target: { name, value } }) => {
     setFormData({ ...formData, [name]: value });
@@ -13,12 +16,11 @@ const PetForm = ({ handleAddPet }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleAddPet(formData);
-    setFormData({
-      name: "",
-      age: "",
-      breed: "",
-    });
+    if (selectedPet) {
+      handleUpdatePet(formData, selectedPet._id);
+    } else {
+      handleAddPet(formData);
+    }
   };
 
   return (
@@ -47,7 +49,9 @@ const PetForm = ({ handleAddPet }) => {
           value={formData.breed}
           onChange={handleChange}
         />
-        <button type="submit">Add New Pet</button>
+        <button type="submit">
+          {selectedPet ? "Update Pet" : "Add New Pet"}
+        </button>
       </form>
     </div>
   );

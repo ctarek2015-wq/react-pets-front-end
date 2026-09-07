@@ -1,4 +1,4 @@
-const PetDetail = ({ selectedPet }) => {
+const PetDetail = ({ selectedPet, handleFormView }) => {
   if (!selectedPet) {
     return (
       <div className="details-container">
@@ -13,6 +13,9 @@ const PetDetail = ({ selectedPet }) => {
       <h2>
         Age: {selectedPet.age} year{selectedPet.age > 1 ? "s" : ""} old
       </h2>
+      <div>
+        <button onClick={() => handleFormView(selectedPet)}>Edit Pet</button>
+      </div>
     </div>
   );
 };
