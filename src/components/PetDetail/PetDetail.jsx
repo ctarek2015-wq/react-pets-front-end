@@ -13,10 +13,9 @@ const PetDetail = ({ selectedPet, handleFormView, handleDeletePet }) => {
       <h2>
         Age: {selectedPet.age} year{selectedPet.age > 1 ? "s" : ""} old
       </h2>
-      <div>
+      <div className="button-container">
         <button onClick={() => handleFormView(selectedPet)}>Edit Pet</button>
-      </div>
-      <div>
+
         <button onClick={() => handleDeletePet(selectedPet._id)}>
           Delete Pet
         </button>
