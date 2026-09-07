@@ -4,6 +4,9 @@ const PetList = ({ pets, handleSelectPet, handleFormView, isFormOpen }) => {
       <div>
         <h1>Pet List</h1>
         <h2>No pets available</h2>
+        <button onClick={handleFormView}>
+          {isFormOpen ? "Close Form" : "New Pet"}
+        </button>
       </div>
     );
 

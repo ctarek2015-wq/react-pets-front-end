@@ -1,21 +1,16 @@
-// src/components/PetForm/PetForm.jsx
-
 import { useState } from "react";
 
 const PetForm = (props) => {
-  // formData state to control the form.
   const [formData, setFormData] = useState({
     name: "",
     age: "",
     breed: "",
   });
 
-  // handleChange function to update formData state.
-  const handleChange = (evt) => {
-    setFormData({ ...formData, [evt.target.name]: evt.target.value });
+  const handleChange = ({ target: { name, value } }) => {
+    setFormData({ ...formData, [name]: value });
   };
 
-  // And finally, the form itself.
   return (
     <div>
       <form>

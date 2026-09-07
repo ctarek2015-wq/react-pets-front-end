@@ -7,7 +7,6 @@ import "./App.css";
 
 function App() {
   const [pets, setPets] = useState([]);
-
   const [selectedPet, setSelectedPet] = useState(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
 
