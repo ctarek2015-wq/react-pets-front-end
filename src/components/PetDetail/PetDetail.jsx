@@ -1,4 +1,4 @@
-const PetDetail = ({ selectedPet, handleFormView }) => {
+const PetDetail = ({ selectedPet, handleFormView, handleDeletePet }) => {
   if (!selectedPet) {
     return (
       <div className="details-container">
@@ -15,6 +15,11 @@ const PetDetail = ({ selectedPet, handleFormView }) => {
       </h2>
       <div>
         <button onClick={() => handleFormView(selectedPet)}>Edit Pet</button>
+      </div>
+      <div>
+        <button onClick={() => handleDeletePet(selectedPet._id)}>
+          Delete Pet
+        </button>
       </div>
     </div>
   );
